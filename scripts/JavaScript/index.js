@@ -102,18 +102,22 @@ $(document).ready(function () //will only run the script once the elements have 
         }
     }
     //will get data from local storage. If none is found, return empty, else return with saved events. Repeated each hour
-    function getData(findHour) {
-        return ("Hi");
+    function loadContent() {
+        for(let i = 0; i < $(".time-block").length; i++) //loop through each time element
+        {
+            let thisID = parseInt($(".time-block")[i].getAttribute("id").split("-")[1]);
+            console.log($(`#hour-${thisID} .description`).val(localStorage.getItem(`hour-${thisID}`)));
+        }
     }
 
     //creating calendar block
 
-    function createCalendar() {
+    function colourHours() {
         
         for(let i = 0; i < $(".time-block").length; i++) //loop through each time element
         {
             let thisHour = parseInt($(".time-block")[i].getAttribute("id").split("-")[1]);
-            //logic to determine if this block is in the past, present or future
+            //logic to determine if this block is in the past, present or future will remove any unnecessary classes in accordance with the time the object represents.
             if(thisHour < currentHour)
             {
                 $(".time-block")[i].classList.add("past");
@@ -154,6 +158,11 @@ $(document).ready(function () //will only run the script once the elements have 
         }, 5000);
         console.log(timeId, value);
     });
+
+    //controls date at the top of the screen
     displayToday();
-    createCalendar();
+    //determines logic for past, present and future
+    colourHours();
+    //loads any (if any) data from the local storage
+    loadContent();
 });
