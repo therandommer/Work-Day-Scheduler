@@ -11,6 +11,9 @@ let calendarList = $("#calendarList"); //storing each block of the calendar in a
 let eventInputEl = $("#eventInput"); //getting each event input and storing the strings inputted
 let todayEl = $("#currentDay"); //will display the current day as the website was loaded.
 
+//----Functions and logic----//
+
+//filter through current day, date and month to display the relevant string at the top of the page
 function displayToday()
 {
     let dayText = "Default Day";
@@ -96,7 +99,6 @@ function displayToday()
     {
         todayEl.text(`Today is: ${dayText}, ${currentDate}th of ${monthText}.`);
     }
-    
 }
 //will get data from local storage. If none is found, return empty, else return with saved events. Repeated each hour
 function getData(findHour)
