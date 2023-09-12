@@ -103,7 +103,7 @@ $(document).ready(function () //will only run the script once the elements have 
     }
     //will get data from local storage. If none is found, return empty, else return with saved events. Repeated each hour
     function loadContent() {
-        for(let i = 0; i < $(".time-block").length; i++) //loop through each time element
+        for (let i = 0; i < $(".time-block").length; i++) //loop through each time element
         {
             let thisID = parseInt($(".time-block")[i].getAttribute("id").split("-")[1]);
             console.log($(`#hour-${thisID} .description`).val(localStorage.getItem(`hour-${thisID}`)));
@@ -113,25 +113,22 @@ $(document).ready(function () //will only run the script once the elements have 
     //creating calendar block
 
     function colourHours() {
-        
-        for(let i = 0; i < $(".time-block").length; i++) //loop through each time element
+        console.log("called!");
+        for (let i = 0; i < $(".time-block").length; i++) //loop through each time element
         {
             let thisHour = parseInt($(".time-block")[i].getAttribute("id").split("-")[1]);
             //logic to determine if this block is in the past, present or future will remove any unnecessary classes in accordance with the time the object represents.
-            if(thisHour < currentHour)
-            {
+            if (thisHour < currentHour) {
                 $(".time-block")[i].classList.add("past");
                 $(".time-block")[i].classList.remove("present");
                 $(".time-block")[i].classList.remove("future");
             }
-            else if(thisHour === currentHour)
-            {
+            else if (thisHour === currentHour) {
                 $(".time-block")[i].classList.remove("past");
                 $(".time-block")[i].classList.add("present");
                 $(".time-block")[i].classList.remove("future");
             }
-            else if (thisHour > currentHour)
-            {
+            else if (thisHour > currentHour) {
                 $(".time-block")[i].classList.remove("past");
                 $(".time-block")[i].classList.remove("present");
                 $(".time-block")[i].classList.add("future");
@@ -140,19 +137,19 @@ $(document).ready(function () //will only run the script once the elements have 
     }
 
     //listen for click on each save button
-    $(".saveBtn").on("click", function(){
-        
+    $(".saveBtn").on("click", function () {
+
         let timeId = $(this).parent().attr("id"); //getting the id value from the parent object
         let value = $(this).siblings(".description").val();
 
         localStorage.setItem(timeId, value); //saving the values gathered above
 
         //reveals the notification
-        $(".notification").removeClass("hide"); 
-        $(".notification").addClass("show"); 
+        $(".notification").removeClass("hide");
+        $(".notification").addClass("show");
 
         //hides notification after 5 seconds
-        setTimeout(function(){
+        setTimeout(function () {
             $(".notification").removeClass("show");
             $(".notification").addClass("hide");
         }, 5000);
@@ -165,4 +162,6 @@ $(document).ready(function () //will only run the script once the elements have 
     colourHours();
     //loads any (if any) data from the local storage
     loadContent();
+
+    let updateHours = setInterval(colourHours, 20000); //will update the colour schemes for the hours every 20 seconds. This will update the present hour to a new one if the local time changes
 });
