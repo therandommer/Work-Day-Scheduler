@@ -7,8 +7,11 @@ let currentMonth = dayjs().month(); //used to display current month at the top o
 
 //----Object references----//
 
+let containerEl = $("#container");
+
 let calendarList = $("#calendarList"); //storing each block of the calendar in an array as a separate block element with consistent styling.
 let eventInputEl = $("#eventInput"); //getting each event input and storing the strings inputted
+let hourEl = $("#hours");
 let todayEl = $("#currentDay"); //will display the current day as the website was loaded.
 let timeBlockEl = $("#timeBlock");
 //----Functions and logic----//
@@ -114,7 +117,7 @@ function createCalendar()
     {
         //---- Creating items in the HTML file ----
         let listEl = $("<li>");
-        let hourEl = $("<p>");
+        
         let eventEl = $("<p>");
 
         if(i < currentHour) //filter past events
