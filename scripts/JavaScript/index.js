@@ -166,7 +166,8 @@ $(document).ready(function () //will only run the script once the elements have 
     $(".saveBtn").on("click", function(){
         
         let timeId = $(this).parent().attr("id"); //getting the id value from the parent object
-        console.log(timeId);
+        let value = $(this).siblings(".description").val;
+        console.log(timeId, description);
     });
     displayToday();
     createCalendar();
