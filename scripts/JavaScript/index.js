@@ -10,15 +10,10 @@ $(document).ready(function () //will only run the script once the elements have 
     //----Object references----//
 
     $(".notification").addClass("hide"); //hides notification on js initialisation
-    let containerEl = $("#container");
-
-    let calendarList = $("#calendarList"); //storing each block of the calendar in an array as a separate block element with consistent styling.
-    let eventInputEl = $("#eventInput"); //getting each event input and storing the strings inputted
-    let hourEl = $("#hours");
     let todayEl = $("#currentDay"); //will display the current day as the website was loaded.
     let timeBlockEl = $("#timeBlock");
-    //----Functions and logic----//
 
+    //----Functions and logic----//
 
     //filter through current day, date and month to display the relevant string at the top of the page
     function displayToday() {
@@ -114,52 +109,10 @@ $(document).ready(function () //will only run the script once the elements have 
     //creating calendar block
 
     function createCalendar() {
-        for (let i = 0; i <= 23; i++) //up to 23 as dayjs stores hours from 0-23
+        
+        for(let i = 0; i < $(".time-block").length; i++)
         {
-            //---- Creating items in the HTML file ----
-            let listEl = $("<li>");
-
-            let eventEl = $("<p>");
-
-            if (i < currentHour) //filter past events
-            {
-                eventEl.addClass(".past");
-                console.log(`Adding past tag to hour: ${i}`);
-            }
-            else if (i == currentHour) //filter current events
-            {
-                eventEl.addClass(".present");
-                console.log(`Adding present tag to hour: ${i}`);
-            }
-            else //filter future events
-            {
-                eventEl.addClass(".future");
-                console.log(`Adding future tag to hour: ${i}`);
-            }
-
-            //formatting hour data
-
-            if (i === 0) //midnight parsing
-            {
-                hourEl.text("12 AM");
-            }
-            else if (i > 0 && i < 12) //morning(AM)
-            {
-                hourEl.text(`${i} AM`);
-            }
-            else //afternoon/evening(PM)
-            {
-                hourEl.text(`${i} PM`);
-            }
-            //---- Class formatting ----
-            eventEl.addClass(".time-block");
-            hourEl.addClass(".hour");
-            listEl.addClass(".row").text(getData(i)); //will get the data stored in the browser, if nothing display nothing, else display relevant data
-
-            //---Generating the content
-            timeBlockEl.append(hourEl);
-            listEl.append(hourEl, eventEl);
-            calendarList.append(listEl); //append with the data generated in this function
+            console.log($(".time-block")[i].getAttribute("id").split("-")[1]);
         }
     }
 
