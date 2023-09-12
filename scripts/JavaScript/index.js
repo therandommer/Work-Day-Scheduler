@@ -9,6 +9,7 @@ $(document).ready(function () //will only run the script once the elements have 
 
     //----Object references----//
 
+    $(".notification").addClass("hide"); //hides notification on js initialisation
     let containerEl = $("#container");
 
     let calendarList = $("#calendarList"); //storing each block of the calendar in an array as a separate block element with consistent styling.
@@ -166,8 +167,20 @@ $(document).ready(function () //will only run the script once the elements have 
     $(".saveBtn").on("click", function(){
         
         let timeId = $(this).parent().attr("id"); //getting the id value from the parent object
-        let value = $(this).siblings(".description").val;
-        console.log(timeId, description);
+        let value = $(this).siblings(".description").val();
+
+        localStorage.setItem(timeId, value); //saving the values gathered above
+
+        //reveals the notification
+        $(".notification").removeClass("hide"); 
+        $(".notification").addClass("show"); 
+
+        //hides notification after 5 seconds
+        setTimeout(function(){
+            $(".notification").removeClass("show");
+            $(".notification").addClass("hide");
+        }, 5000);
+        console.log(timeId, value);
     });
     displayToday();
     createCalendar();
