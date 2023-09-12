@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="scripts/CSS/style.css" /> <!--Adjusted style.css script reference-->
+    <link rel="stylesheet" href="./scripts/CSS/style.css" /> <!--Adjusted style.css script reference-->
     <title>Work Day Scheduler</title>
   </head>
 
@@ -31,15 +31,28 @@
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
-      <ul id="calendarList">
         <!-- Timeblocks go here -->
+        <section class = "row timeBlock">
+          <!--Hours container-->
+          <section class = "col-md-1 hours"> 
+            Some time
+          </section>
+          <!--Editable events area-->
+          <textarea class = "col-md-9 events"> 
+            An event
+          </textarea>
+          <!--Saving section-->
+          <button class = "col-md-2 save"> 
+            Saving
+          </button>
+        </section>
+        
         <!-- Each element generated from js code-->
-      </ul>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/dayjs.min.js "></script> <!-- Addition of day.js-->
-    <script src="scripts/JavaScript/index.js"></script>
+    <script src="./scripts/JavaScript/index.js"></script>
   </body>
 </html>

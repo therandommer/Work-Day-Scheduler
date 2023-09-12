@@ -10,7 +10,7 @@ let currentMonth = dayjs().month(); //used to display current month at the top o
 let calendarList = $("#calendarList"); //storing each block of the calendar in an array as a separate block element with consistent styling.
 let eventInputEl = $("#eventInput"); //getting each event input and storing the strings inputted
 let todayEl = $("#currentDay"); //will display the current day as the website was loaded.
-
+let timeBlockEl = $("#timeBlock");
 //----Functions and logic----//
 
 //filter through current day, date and month to display the relevant string at the top of the page
@@ -153,6 +153,7 @@ function createCalendar()
         listEl.addClass(".row").text(getData(i)); //will get the data stored in the browser, if nothing display nothing, else display relevant data
 
         //---Generating the content
+        timeBlockEl.append(hourEl);
         listEl.append(hourEl, eventEl);
         calendarList.append(listEl); //append with the data generated in this function
     }
