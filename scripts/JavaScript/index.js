@@ -14,14 +14,14 @@ createCalendar();
 //will get data from local storage. If none is found, return empty, else return with saved events. Repeated each hour
 function getData(findHour)
 {
-    return("");
+    return("Hi");
 }
 
 //creating calendar block
 
 function createCalendar()
 {
-    for(let i = 0; i < 23; i++) //up to 23 as dayjs stores hours from 0-23
+    for(let i = 0; i <= 23; i++) //up to 23 as dayjs stores hours from 0-23
     {
         //---- Creating items in the HTML file ----
         let listEl = $("<li>");
@@ -31,21 +31,41 @@ function createCalendar()
         if(i < currentHour) //filter past events
         {
             eventEl.addClass(".past");
+            console.log(`Adding past tag to hour: ${i}`);
         }
         else if( i == currentHour) //filter current events
         {
             eventEl.addClass(".present");
+            console.log(`Adding present tag to hour: ${i}`);
         }
         else //filter future events
         {
             eventEl.addClass(".future");
+            console.log(`Adding future tag to hour: ${i}`);
+        }
+
+        //formatting hour data
+
+        if(i === 0) //midnight parsing
+        {
+            hourEl.text("12 AM");
+        }
+        else if(i > 0 && i < 12) //morning(AM)
+        {
+            hourEl.text(`${i} AM`);
+        }
+        else //afternoon/evening(PM)
+        {
+            hourEl.text(`${i} PM`);
         }
         //---- Class formatting ----
         eventEl.addClass(".time-block");
         hourEl.addClass(".hour");
-        listEl.addClass(".row").text(getData*(i)); //will get the data stored in the browser, if nothing display nothing, else display relevant data
+        listEl.addClass(".row").text(getData(i)); //will get the data stored in the browser, if nothing display nothing, else display relevant data
 
-        calendarList.append(); //append with the data generated in this function
+        //---Generating the content
+        listEl.append(hourEl, eventEl);
+        calendarList.append(listEl); //append with the data generated in this function
     }
 }
 
