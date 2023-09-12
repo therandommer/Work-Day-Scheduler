@@ -110,9 +110,28 @@ $(document).ready(function () //will only run the script once the elements have 
 
     function createCalendar() {
         
-        for(let i = 0; i < $(".time-block").length; i++)
+        for(let i = 0; i < $(".time-block").length; i++) //loop through each time element
         {
-            console.log($(".time-block")[i].getAttribute("id").split("-")[1]);
+            let thisHour = parseInt($(".time-block")[i].getAttribute("id").split("-")[1]);
+            //logic to determine if this block is in the past, present or future
+            if(thisHour < currentHour)
+            {
+                $(".time-block")[i].classList.add("past");
+                $(".time-block")[i].classList.remove("present");
+                $(".time-block")[i].classList.remove("future");
+            }
+            else if(thisHour === currentHour)
+            {
+                $(".time-block")[i].classList.remove("past");
+                $(".time-block")[i].classList.add("present");
+                $(".time-block")[i].classList.remove("future");
+            }
+            else if (thisHour > currentHour)
+            {
+                $(".time-block")[i].classList.remove("past");
+                $(".time-block")[i].classList.remove("present");
+                $(".time-block")[i].classList.add("future");
+            }
         }
     }
 
