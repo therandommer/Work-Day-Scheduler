@@ -162,6 +162,12 @@ $(document).ready(function () //will only run the script once the elements have 
         }
     }
 
+    //listen for click on each save button
+    $(".saveBtn").on("click", function(){
+        
+        let timeId = $(this).parent().attr("id"); //getting the id value from the parent object
+        console.log(timeId);
+    });
     displayToday();
     createCalendar();
 });
